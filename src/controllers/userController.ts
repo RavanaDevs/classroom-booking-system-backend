@@ -12,16 +12,29 @@ export const addUser = async (
     const validatedData = userSchema.parse(req.body)
 
     const newUser = new User(validatedData)
-    await newUser.save()
+    const user = await newUser.save()
+    console.log(user)
 
-    res
-      .status(201)
-      .json({ message: 'User created successfully', user: newUser })
+    res.status(201).json({ message: 'User created successfully', user: user })
   } catch (error) {
     console.log(error)
     if (error instanceof z.ZodError) {
       res.status(400).json({ errors: error.errors })
     }
     res.status(500).json({ message: 'Server error' })
+  }
+}
+
+export const getAllUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const users = await User.find()
+    res.status(200).json(users)
+  } catch (e) {
+    console.log('Error while getting users', e)
+    res.status(500).json({ message: 'error' })
   }
 }
