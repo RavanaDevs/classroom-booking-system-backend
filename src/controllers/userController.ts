@@ -45,3 +45,18 @@ export const getAllLectureres = async (
     next(err)
   }
 }
+
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+    const validatedData = userSchema.parse(req.body)
+    const user = await User.findByIdAndUpdate(id, validatedData)
+    res.status(200).json({ message: 'User updated successfully', user: user })
+  } catch (err) {
+    next(err)
+  }
+}
