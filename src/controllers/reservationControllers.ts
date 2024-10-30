@@ -61,3 +61,23 @@ export const updateReservation = async (
     next(err)
   }
 }
+
+export const deleteReservation = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+
+    const reservation = await Reservation.findByIdAndDelete(id)
+
+    if (!reservation) {
+      res.status(404).json({ message: 'Reservation not found' })
+    }
+
+    res.status(200).json({ message: 'Reservation deleted successfully' })
+  } catch (err) {
+    next(err)
+  }
+}
