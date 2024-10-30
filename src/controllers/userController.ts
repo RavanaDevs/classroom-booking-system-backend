@@ -32,3 +32,16 @@ export const getAllUsers = async (
     next(err)
   }
 }
+
+export const getAllLectureres = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const users = await User.find({ role: 'lecturer' })
+    res.status(200).json(users)
+  } catch (err) {
+    next(err)
+  }
+}
