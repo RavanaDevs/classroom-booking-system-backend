@@ -32,3 +32,18 @@ export const getAllResourse = async (
     next(err)
   }
 }
+
+export const updateResourse = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+    const validatedData = resourseSchema.parse(req.body)
+    const resourse = await Resourse.findByIdAndUpdate(id, validatedData, { new: true })
+    res.status(200).json({ message: 'Resource updated successfully', resourse: resourse })
+  } catch (err) {
+    next(err)
+  }
+}
