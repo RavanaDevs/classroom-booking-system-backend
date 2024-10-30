@@ -1,8 +1,7 @@
 import express from 'express'
-import { createClass } from '../controllers/classController'
-import { requireAuth } from '@clerk/express'
+import { createClassRoom } from '../controllers/classController'
 
-const classRouter = express.Router()
-classRouter.post('/', createClass)
+const classRoomRouter = express.Router()
+classRoomRouter.post('/', createClassRoom)
 
-export default classRouter
+export default classRoomRouter

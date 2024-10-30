@@ -6,7 +6,7 @@ interface IClass extends Document{
     airCondition:String
 }
 
-const classSchema= new Schema<IClass>(
+const classRoomSchema= new Schema<IClass>(
     {
         classRoomName:{type:String,required:true},
         seatsCount:{type:Number,required:true},
@@ -14,5 +14,5 @@ const classSchema= new Schema<IClass>(
     },
     {timestamps:true}
 )
-const Class=model<IClass>('class',classSchema)
-export default Class
+const ClassRoom=model<IClass>('class',classRoomSchema)
+export default ClassRoom
