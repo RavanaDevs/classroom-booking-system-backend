@@ -2,6 +2,7 @@ import{reservationSchema} from '../validators/reservationValidator';
 import Reservation from '../models/reservationModel';
 import { z } from 'zod'
 import { NextFunction, Request, Response } from 'express'
+import exp from 'constants';
 
 export const createReservation = async (
   req: Request,
@@ -19,3 +20,16 @@ export const createReservation = async (
     next(err)
   }
 }
+
+export const getAllReservations = async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+    ) => {
+    try {
+        const reservations = await Reservation.find()
+        res.status(200).json(reservations)
+    } catch (err) {
+        next(err)
+    }
+    }
