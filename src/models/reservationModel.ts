@@ -18,15 +18,14 @@ const reservationSchema = new Schema<IReservation>(
   {
     classroom: { type: String, required: true },
     year: { type: String, required: true },
-    subjectName: { type: String, required: true, unique: true },
-    courseCode: { type: String , required: true , unique: true},
+    subjectName: { type: String, required: true },
+    courseCode: { type: String, required: true },
     date: { type: String, required: true },
     startTime: { type: String, required: true },
     endTime: { type: String, required: true },
-    scheduleRecurrently: { type:Boolean, required: true },
+    scheduleRecurrently: { type: Boolean, required: true },
     endDate: { type: String, required: true },
     lecturer: { type: String, required: true },
-
   },
   { timestamps: true },
 )
