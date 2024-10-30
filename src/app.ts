@@ -6,6 +6,7 @@ import { clerkMiddleware } from '@clerk/express'
 import errorHandler from './middlewares/error-handler'
 import classRoomRouter from './routes/classRouter'
 
+
 const app: Application = express()
 
 app.use(clerkMiddleware())
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/user', userRouter)
 app.use('/class',classRoomRouter)
+
 
 app.use(errorHandler)
 
