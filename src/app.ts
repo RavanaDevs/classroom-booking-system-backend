@@ -4,6 +4,8 @@ import cors from 'cors'
 import userRouter from './routes/userRouter'
 import { clerkMiddleware } from '@clerk/express'
 import errorHandler from './middlewares/error-handler'
+import classRoomRouter from './routes/classRouter'
+
 
 const app: Application = express()
 
@@ -13,6 +15,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/user', userRouter)
+app.use('/class',classRoomRouter)
+
 
 app.use(errorHandler)
 
