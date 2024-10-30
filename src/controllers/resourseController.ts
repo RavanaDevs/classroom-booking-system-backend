@@ -47,3 +47,17 @@ export const updateResourse = async (
     next(err)
   }
 }
+
+export const deleteResourse = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+    await Resourse.findByIdAndDelete(id) 
+    res.status(200).json({ message: 'Resource deleted successfully' })
+  } catch (err) {
+    next(err)
+  }
+}
