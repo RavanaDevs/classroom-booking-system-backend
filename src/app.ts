@@ -5,6 +5,9 @@ import userRouter from './routes/userRouter'
 import { clerkMiddleware } from '@clerk/express'
 import errorHandler from './middlewares/error-handler'
 import resourseRouter from './routes/resourseRouter'
+import reservationRouter from './routes/reservationRouter'
+import classRoomRouter from './routes/classRouter'
+
 
 const app: Application = express()
 
@@ -15,6 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/user', userRouter)
 app.use('/resource', resourseRouter)
+app.use('/reservation', reservationRouter)
+app.use('/class',classRoomRouter)
 
 app.use(errorHandler)
 
