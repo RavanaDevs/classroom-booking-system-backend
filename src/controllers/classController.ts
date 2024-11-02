@@ -32,53 +32,65 @@ export const getAllClassRoom = async (
   }
 }
 
+export const getClassroom = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+    const classroom = await ClassRoom.findOne({ _id: id })
+    if (classroom) {
+      res.status(200).json(classroom)
+    } else {
+      res.status(404).json({ message: 'Classroom not found!' })
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const updateClassRoom = async (
   req: Request,
   res: Response,
   next: NextFunction,
-): Promise<void> => {
+) => {
   try {
     const { id } = req.query
 
-    
     const validatedData = classRoomSchema.parse(req.body)
 
-    
     const updatedClassRoom = await ClassRoom.findByIdAndUpdate(
       id,
       validatedData,
-      { new: true, runValidators: true } 
+      { new: true, runValidators: true },
     )
 
     if (!updatedClassRoom) {
       res.status(404).json({ message: 'ClassRoom not found' })
-      return
     }
 
     res.status(200).json({
       message: 'ClassRoom updated successfully',
       class: updatedClassRoom,
     })
-  } catch (error) {
-    next(error)
+  } catch (err) {
+    next(err)
   }
 }
-
 
 export const deleteClassRoom = async (
   req: Request,
   res: Response,
   next: NextFunction,
-): Promise<void> => {
+) => {
   try {
     const { id } = req.query
 
-    
     const deletedClassRoom = await ClassRoom.findByIdAndDelete(id)
 
     if (!deletedClassRoom) {
       res.status(404).json({ message: 'ClassRoom not found' })
-      return
     }
 
     res.status(200).json({ message: 'ClassRoom deleted successfully' })
