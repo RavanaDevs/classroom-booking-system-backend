@@ -60,3 +60,17 @@ export const updateUser = async (
     next(err)
   }
 }
+
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const { id } = req.query
+    await User.findByIdAndDelete(id)
+    res.status(200).json({ message: 'User deleted successfully' })
+  } catch (err) {
+    next(err)
+  }
+}

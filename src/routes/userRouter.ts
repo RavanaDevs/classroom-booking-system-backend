@@ -1,6 +1,7 @@
 import express from 'express'
 import {
   createUser,
+  deleteUser,
   getAllLectureres,
   getAllUsers,
   updateUser,
@@ -13,5 +14,6 @@ userRouter.post('/', requireAuth(), createUser)
 userRouter.get('/all', getAllUsers)
 userRouter.get('/lecturers', getAllLectureres)
 userRouter.put('/', updateUser)
+userRouter.delete('/', deleteUser)
 
 export default userRouter
